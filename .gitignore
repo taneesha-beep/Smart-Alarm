@@ -1,0 +1,8 @@
+venv/
+.env
+__pycache__/
+*.pyc
+.DS_Store
+smart-alarm-report.docx
+pic1.png
+pic2.png
