@@ -1,0 +1,337 @@
+:root {
+    --primary: #667eea;
+    --secondary: #764ba2;
+    --success: #10b981;
+    --warning: #f59e0b;
+    --error: #ef4444;
+    --text: #374151;
+    --text-light: #6b7280;
+    --bg: #f9fafb;
+    --card-bg: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    color: var(--text);
+}
+
+.container {
+    background: var(--card-bg);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 480px;
+    text-align: center;
+}
+
+h1 {
+    color: var(--text);
+    margin-bottom: 30px;
+    font-size: 32px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+h1 i {
+    color: var(--primary);
+}
+
+.subtitle {
+    color: var(--text-light);
+    margin-bottom: 30px;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.input-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--text);
+    font-weight: 500;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+label i {
+    color: var(--primary);
+    width: 16px;
+}
+
+.input-with-icon {
+    position: relative;
+}
+
+.input-with-icon i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-light);
+    z-index: 2;
+}
+
+.input-with-icon input {
+    padding-left: 45px !important;
+}
+
+input, select {
+    width: 100%;
+    padding: 14px;
+    border-radius: 12px;
+    border: 2px solid #e5e7eb;
+    font-size: 15px;
+    outline: none;
+    transition: all 0.3s ease;
+    background: var(--bg);
+}
+
+input:focus, select:focus {
+    border-color: var(--primary);
+    background: white;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+button {
+    margin-top: 10px;
+    padding: 16px 30px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    border: none;
+    color: white;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 16px;
+    font-weight: 600;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+}
+
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+#result {
+    margin-top: 30px;
+    padding: 25px;
+    background: var(--bg);
+    border-radius: 15px;
+    text-align: left;
+    display: none;
+}
+
+.result-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.result-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.result-label {
+    color: var(--text-light);
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.result-value {
+    color: var(--text);
+    font-weight: 500;
+}
+
+.final-alarm {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    padding: 20px;
+    border-radius: 12px;
+    margin-top: 15px;
+    text-align: center;
+}
+
+.final-alarm .result-label {
+    color: white;
+    justify-content: center;
+}
+
+.final-alarm .result-value {
+    font-size: 28px;
+    font-weight: 700;
+    text-align: center;
+    margin-top: 8px;
+}
+
+ul.suggestions {
+    list-style: none;
+    background: var(--card-bg);
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    width: 100%;
+    border: 2px solid var(--primary);
+    border-top: none;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 1000;
+    border-radius: 0 0 12px 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    display: none;
+}
+
+ul.suggestions li {
+    padding: 12px 15px;
+    cursor: pointer;
+    font-size: 14px;
+    text-align: left;
+    border-bottom: 1px solid #f3f4f6;
+    transition: background 0.2s ease;
+}
+
+ul.suggestions li:hover {
+    background: var(--primary);
+    color: white;
+}
+
+ul.suggestions li:last-child {
+    border-bottom: none;
+}
+
+.autocomplete-container {
+    position: relative;
+    margin-top: 5px;
+}
+
+.loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid var(--primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.alert {
+    padding: 15px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.alert.error {
+    background: #fee2e2;
+    color: var(--error);
+    border: 1px solid #fecaca;
+}
+
+.alert.success {
+    background: #d1fae5;
+    color: var(--success);
+    border: 1px solid #a7f3d0;
+}
+
+.time-comparison {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.time-box {
+    flex: 1;
+    padding: 15px;
+    border-radius: 12px;
+    text-align: center;
+    background: var(--bg);
+}
+
+.time-box.current {
+    border: 2px solid var(--warning);
+}
+
+.time-box.new {
+    border: 2px solid var(--success);
+}
+
+.time-value {
+    font-size: 20px;
+    font-weight: 700;
+    margin-top: 5px;
+}
+
+.suggestions li.active {
+    background: var(--primary) !important;
+    color: white !important;
+}
+
+.suggestions li i {
+    margin-right: 8px;
+    opacity: 0.7;
+}
+
+.suggestions li.active i {
+    opacity: 1;
+}
+
+.no-results {
+    color: var(--text-light);
+    font-style: italic;
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 25px;
+    }
+    
+    h1 {
+        font-size: 24px;
+    }
+    
+    .time-comparison {
+        flex-direction: column;
+    }
+}

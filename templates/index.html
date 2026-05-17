@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Alarm - Wake Up Optimizer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1><i class="fas fa-alarm-clock"></i> Smart Alarm</h1>
+        <p class="subtitle">Calculate the perfect time to wake up based on your schedule and travel time</p>
+        
+        <form id="alarmForm">
+            <div class="input-group">
+                <label><i class="fas fa-clock"></i> Current Alarm Time (Optional)</label>
+                <div class="input-with-icon">
+                    <i class="fas fa-bell"></i>
+                    <input type="time" name="current_alarm" id="current_alarm">
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label><i class="fas fa-flag-checkered"></i> When do you want to arrive?</label>
+                <div class="input-with-icon">
+                    <i class="fas fa-bullseye"></i>
+                    <input type="time" name="arrival_time" id="arrival_time" required>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label><i class="fas fa-shower"></i> Time to get ready (minutes)</label>
+                <div class="input-with-icon">
+                    <i class="fas fa-user-clock"></i>
+                    <input type="number" name="getting_ready" id="getting_ready" placeholder="e.g. 45" min="1" max="240" required>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label><i class="fas fa-home"></i> Start Location</label>
+                <div class="autocomplete-container">
+                    <div class="input-with-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <input type="text" id="start_place" name="start_place" placeholder="Enter your starting address" required autocomplete="off">
+                    </div>
+                    <ul id="start_suggestions" class="suggestions"></ul>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label><i class="fas fa-building"></i> Destination</label>
+                <div class="autocomplete-container">
+                    <div class="input-with-icon">
+                        <i class="fas fa-location-arrow"></i>
+                        <input type="text" id="end_place" name="end_place" placeholder="Enter your destination" required autocomplete="off">
+                    </div>
+                    <ul id="end_suggestions" class="suggestions"></ul>
+                </div>
+            </div>
+
+            <button type="submit" id="submitBtn">
+                <i class="fas fa-calculator"></i>
+                <span>Calculate Alarm Time</span>
+            </button>
+        </form>
+
+        <div id="alertContainer"></div>
+        
+        <div id="result">
+            <!-- Results will be populated here -->
+        </div>
+    </div>
+
+    <audio id="alarmAudio" src="https://actions.google.com/sounds/v1/alarms/alarm_clock.ogg" preload="auto"></audio>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
